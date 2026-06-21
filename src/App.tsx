@@ -21,7 +21,7 @@ export default function App() {
             </h1>
             <p className="mx-auto mt-4 max-w-prose text-base text-muted-foreground sm:text-lg">
               The first conference dedicated to computational linguistics at the
-              University of Toronto. Coming&nbsp;September&nbsp;2026!
+              University of Toronto. Coming&nbsp;September&nbsp;24 2026!
             </p>
 
             <div className="mx-auto mt-8 flex max-w-md flex-col items-center gap-2 rounded-xl border bg-muted/50 px-4 py-6 text-muted-foreground sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
