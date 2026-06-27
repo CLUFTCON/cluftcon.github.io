@@ -1,7 +1,10 @@
-import { CalendarRange, Sparkles } from 'lucide-react'
+import { CalendarRange, MapPin, Sparkles } from 'lucide-react'
 
+import { AboutSection } from '@/components/AboutSection'
 import { ComingSoonSection } from '@/components/ComingSoonSection'
 import { Header } from '@/components/Header'
+import { SignUpSection } from '@/components/SignUpSection'
+import { SponsorsSection } from '@/components/SponsorsSection'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
@@ -17,22 +20,29 @@ export default function App() {
               University of Toronto
             </Badge>
             <h1 className="font-heading text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
-              Computational Linguistics Conference
+              CLUFTCON
             </h1>
             <p className="mx-auto mt-4 max-w-prose text-base text-muted-foreground sm:text-lg">
-              The first conference dedicated to computational linguistics at the
-              University of Toronto. Coming&nbsp;September&nbsp;24 2026!
+              The University of Toronto&apos;s first undergraduate research
+              conference in computational linguistics.
             </p>
 
-            <div className="mx-auto mt-8 flex max-w-md flex-col items-center gap-2 rounded-xl border bg-muted/50 px-4 py-6 text-muted-foreground sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
-              <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <div className="mx-auto mt-8 flex max-w-lg flex-col items-stretch gap-3 rounded-xl border bg-muted/50 px-4 py-6 text-muted-foreground sm:max-w-2xl sm:flex-row sm:items-center sm:justify-center sm:gap-6">
+              <div className="flex items-center justify-center gap-2 text-sm font-medium text-foreground">
                 <CalendarRange className="size-5 shrink-0" aria-hidden />
-                <span>September 2026</span>
+                <span>September 24, 2026 · 12–3 PM EST</span>
               </div>
               <span className="hidden text-border sm:inline" aria-hidden>
                 |
               </span>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-center justify-center gap-2 text-sm">
+                <MapPin className="size-5 shrink-0 text-primary" aria-hidden />
+                <span>Bahen Centre atrium</span>
+              </div>
+              <span className="hidden text-border sm:inline" aria-hidden>
+                |
+              </span>
+              <div className="flex items-center justify-center gap-2 text-sm">
                 <Sparkles
                   className="size-5 shrink-0 text-primary"
                   aria-hidden
@@ -48,47 +58,40 @@ export default function App() {
               <Button size="lg" variant="outline" asChild>
                 <a href="#about">Learn More</a>
               </Button>
+              <Button size="lg" variant="outline" asChild>
+                <a href="#sponsors">Become a Sponsor</a>
+              </Button>
             </div>
           </div>
         </section>
 
-        <ComingSoonSection
-          id="about"
-          title="About"
-          description="Learn about the conference, its mission, and what to expect."
-        />
+        <AboutSection />
 
         <ComingSoonSection
           id="speakers"
           title="Speakers"
-          description="Meet the researchers and practitioners presenting at CLUFTCON."
+          description="2–3 keynote addresses from faculty — speaker lineup coming soon."
         />
 
         <ComingSoonSection
           id="schedule"
           title="Schedule"
-          description="Browse talks, panels, and events across the conference program."
+          description="Keynote speeches, a catered lunch, and poster presentations — full program details coming soon."
         />
 
-        <ComingSoonSection
-          id="sign-up"
-          title="Sign Up"
-          description="Registration and submission details will be available here."
-        />
+        <SignUpSection />
 
-        <ComingSoonSection
-          id="sponsors"
-          title="Sponsors"
-          description="Our partners and supporters making this conference possible."
-          className="border-b"
-        />
+        <SponsorsSection />
       </main>
 
       <footer className="border-t bg-background/60 px-4 py-8 sm:px-6">
         <div className="mx-auto max-w-5xl text-center text-sm text-muted-foreground">
           <p>
-            Computational Linguistics Conference · University of Toronto ·
-            September 2026
+            CLUFTCON · University of Toronto · September 24, 2026 · Bahen Centre
+            atrium
+          </p>
+          <p className="mt-1">
+            Organized by CLCUOFT and UTMCLS
           </p>
         </div>
       </footer>
