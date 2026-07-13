@@ -1,19 +1,24 @@
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
-
 const navItems = [
-  { label: 'About', href: '#about' },
+  { label: 'Story', href: '#story' },
+  { label: 'Program', href: '#program' },
   { label: 'Speakers', href: '#speakers' },
-  { label: 'Schedule', href: '#schedule' },
-  { label: 'Sign Up', href: '#sign-up' },
+  { label: 'Attend', href: '#attend' },
   { label: 'Sponsors', href: '#sponsors' },
 ] as const
 
-export function Header() {
+export function Header({ onJoin }: { onJoin: () => void }) {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 24)
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -22,74 +27,44 @@ export function Header() {
     }
   }, [mobileOpen])
 
-  function closeMobileMenu() {
-    setMobileOpen(false)
-  }
+  const close = () => setMobileOpen(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 sm:h-16 sm:px-6">
-        <a
-          href="#"
-          className="font-heading text-sm font-semibold tracking-tight sm:text-base"
-          onClick={closeMobileMenu}
-        >
-          CLUFTCON
+    <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${mobileOpen ? 'menu-open' : ''}`}>
+      <div className="nav-shell">
+        <a href="#top" className="wordmark" onClick={close}>
+          <strong>CLUFTCON</strong>
+          <span>/ˈkləft.kɑn/</span>
         </a>
 
-        <nav
-          className="hidden items-center gap-1 md:flex"
-          aria-label="Main navigation"
-        >
+        <nav className="desktop-nav" aria-label="Main navigation">
           {navItems.map((item) => (
-            <Button
-              key={item.href}
-              variant="ghost"
-              size="sm"
-              asChild
-              className={cn(item.label === 'Sign Up' && 'font-medium')}
-            >
-              <a href={item.href}>{item.label}</a>
-            </Button>
+            <a key={item.href} href={item.href}>{item.label}</a>
           ))}
+          <button className="nav-cta" onClick={onJoin}>Join the list</button>
         </nav>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-nav"
+        <button
+          className="menu-button"
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((open) => !open)}
         >
           {mobileOpen ? <X /> : <Menu />}
-        </Button>
+        </button>
       </div>
 
-      {mobileOpen ? (
-        <nav
-          id="mobile-nav"
-          className="border-t bg-background px-4 py-4 md:hidden"
-          aria-label="Mobile navigation"
-        >
-          <ul className="flex flex-col gap-1">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  asChild
-                  className="h-11 w-full justify-start"
-                  onClick={closeMobileMenu}
-                >
-                  <a href={item.href}>{item.label}</a>
-                </Button>
-              </li>
-            ))}
-          </ul>
+      {mobileOpen && (
+        <nav className="mobile-nav" aria-label="Mobile navigation">
+          <div className="mobile-branch" aria-hidden>枝 · 語 · 花</div>
+          {navItems.map((item, index) => (
+            <a key={item.href} href={item.href} onClick={close}>
+              <span>0{index + 1}</span>{item.label}
+            </a>
+          ))}
+          <button onClick={() => { close(); onJoin() }}>Join the interest list</button>
         </nav>
-      ) : null}
+      )}
     </header>
   )
 }
