@@ -157,6 +157,10 @@ a { color: inherit; text-decoration: none; }
 .rock-three .stone-facet, .rock-five .stone-facet { fill: #aeb3b2; opacity: 1; }
 .ashiyu-caustics { position: absolute; z-index: 3; inset: 0; width: 100%; height: 100%; overflow: visible; opacity: .17; mix-blend-mode: screen; pointer-events: none; }
 .ashiyu-caustic-field { fill: rgba(255,246,220,.72); transform-box: fill-box; transform-origin: center; }
+.ashiyu-scene.is-safari .ashiyu-caustics { display: none; }
+.ashiyu-scene.is-safari .ashiyu-water::after { content: ''; position: absolute; z-index: 2; inset: 0; pointer-events: none; opacity: .18; background-image: radial-gradient(ellipse at 22% 36%, rgba(255,247,220,.58) 0 2%, transparent 6%), radial-gradient(ellipse at 72% 68%, rgba(255,247,220,.5) 0 2.5%, transparent 7%), radial-gradient(ellipse at 48% 18%, rgba(255,247,220,.38) 0 1.5%, transparent 6%); background-size: 190px 145px, 245px 185px, 155px 125px; }
+.ashiyu-scene.is-safari .ashiyu-quote-motion { backface-visibility: hidden; }
+.ashiyu-scene.is-safari .ashiyu-quote-text.is-wet { filter: blur(.1px); }
 .ashiyu-ripples { position: absolute; z-index: 5; top: calc(var(--waterline) - 50px); left: 0; width: 100%; height: 100px; overflow: visible; pointer-events: none; }
 .ashiyu-ripples ellipse { fill: none; stroke: rgba(255,248,235,.64); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .ashiyu-rim { position: absolute; z-index: 6; top: calc(var(--waterline) - 8px); right: 3%; left: 3%; height: 17px; overflow: hidden; background: linear-gradient(180deg, #8b6870 0%, #674751 48%, #4b343e 100%); border-radius: 3px; box-shadow: 0 9px 22px rgba(47,33,39,.2), inset 0 1px rgba(255,255,255,.28); pointer-events: none; }
