@@ -24,8 +24,11 @@ jobs:
 
       - name: Set base URL for Pages
         run: |
-          owner="${GITHUB_REPOSITORY%%/*}"
+          # GitHub owner names are case-insensitive, while shell comparisons are
+          # not (for example CLUFTCON vs cluftcon.github.io).
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
           repo="${GITHUB_REPOSITORY#*/}"
+          repo="${repo,,}"
           if [ "$repo" = "${owner}.github.io" ]; then
             echo "GITHUB_PAGES_BASE=/" >> "$GITHUB_ENV"
           else
