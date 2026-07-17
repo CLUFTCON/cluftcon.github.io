@@ -58,6 +58,65 @@ function useMediaQuery(query: string) {
   return matches
 }
 
+const teaserBlooms = [
+  [52, 80, .7, -12],
+  [83, 97, .54, 18],
+  [110, 59, .64, 8],
+  [137, 82, .48, -18],
+  [164, 48, .6, 14],
+  [187, 75, .46, -9],
+  [213, 38, .55, 21],
+] as const
+
+function MobileTreeTeaser({ showCue, open, onOpen }: { showCue: boolean; open: boolean; onOpen: () => void }) {
+  return (
+    <button
+      className={`mobile-tree-trigger ${showCue ? 'show-cue' : ''}`}
+      type="button"
+      onClick={onOpen}
+      aria-label="Open the language tree"
+      aria-expanded={open}
+      aria-controls="mobile-tree-drawer"
+    >
+      <svg className="mobile-tree-teaser-art" viewBox="0 0 270 225" aria-hidden>
+        <defs>
+          <linearGradient id="mobile-teaser-branch" x1="1" y1="1" x2=".12" y2=".12">
+            <stop stopColor="var(--palette-plum-625)" />
+            <stop offset=".58" stopColor="var(--palette-plum-475)" />
+            <stop offset="1" stopColor="var(--palette-plum-325)" />
+          </linearGradient>
+          <radialGradient id="mobile-teaser-bloom">
+            <stop stopColor="var(--palette-rose-225)" />
+            <stop offset=".55" stopColor="var(--palette-rose-425)" />
+            <stop offset="1" stopColor="var(--palette-rose-850)" />
+          </radialGradient>
+          <path id="mobile-teaser-petal" d="M0 1 C-8 -5 -11 -17 -7 -27 C-4 -35 0 -39 0 -44 C4 -38 8 -33 10 -26 C14 -16 10 -5 0 1Z" />
+        </defs>
+        <g className="mobile-tree-teaser-canopy">
+          <path className="mobile-tree-teaser-branch" d="M282 211 C239 197 220 174 199 143 C174 108 140 92 91 88 L94 99 C139 105 166 120 185 151 C207 187 235 214 276 224Z" />
+          <path className="mobile-tree-teaser-branch branch-fine" d="M205 155 C183 118 178 79 211 36 L218 42 C190 82 193 116 214 150Z" />
+          <path className="mobile-tree-teaser-branch branch-fine" d="M175 119 C151 91 125 74 98 58 L102 65 C128 83 148 99 168 126Z" />
+          <path className="mobile-tree-teaser-branch branch-fine" d="M141 101 C113 101 82 90 54 69 L58 78 C83 99 111 110 142 109Z" />
+          {teaserBlooms.map(([x, y, scale, rotation], bloomIndex) => (
+            <g className="mobile-tree-teaser-bloom" transform={`translate(${x} ${y}) rotate(${rotation}) scale(${scale})`} key={bloomIndex}>
+              {Array.from({ length: 5 }, (_, petalIndex) => (
+                <use href="#mobile-teaser-petal" transform={`rotate(${petalIndex * 72}) translate(0 -4)`} key={petalIndex} />
+              ))}
+              <circle r="3.5" />
+            </g>
+          ))}
+          <use className="mobile-tree-teaser-loose-petal" href="#mobile-teaser-petal" transform="translate(117 145) rotate(54) scale(.42)" />
+          <use className="mobile-tree-teaser-loose-petal second" href="#mobile-teaser-petal" transform="translate(59 132) rotate(-28) scale(.32)" />
+        </g>
+      </svg>
+      <span className="mobile-tree-teaser-action" aria-hidden>
+        <small>Bloom / Parse</small>
+        <i><ChevronUp /></i>
+      </span>
+    </button>
+  )
+}
+
 function MobileTreeDrawer({
   open,
   mode,
@@ -206,17 +265,7 @@ export default function App() {
             </dl>
           </div>
           {isMobile ? (
-            <button
-              className={`mobile-tree-trigger ${showTreeCue ? 'show-cue' : ''}`}
-              type="button"
-              onClick={openMobileTree}
-              aria-expanded={mobileTreeOpen}
-              aria-controls="mobile-tree-drawer"
-            >
-              <span><small>Bloom ↔ Parse</small><strong>Read the tree</strong></span>
-              <span className="mobile-tree-trigger-cue" aria-hidden>Open the full tree</span>
-              <ChevronUp aria-hidden />
-            </button>
+            <MobileTreeTeaser showCue={showTreeCue} open={mobileTreeOpen} onOpen={openMobileTree} />
           ) : (
             <>
               <div className={`hero-art ${sceneMode === 'parse' ? 'is-parse' : ''}`}>
