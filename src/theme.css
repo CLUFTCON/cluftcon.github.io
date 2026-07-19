@@ -122,9 +122,9 @@
   --palette-moss-stone: #667257;
   --palette-mineral-air: #e8eee6;
   --palette-mineral-warm: #f7eee3;
-  --palette-mineral-water-top: #b8b1ad;
-  --palette-mineral-water-bottom: #999b9d;
-  --palette-wet-text: #49434a;
+  --palette-mineral-water-top: #aab9b6;
+  --palette-mineral-water-bottom: #7f9297;
+  --palette-wet-text: #3f494c;
   --palette-lantern-dark: #4f514d;
   --palette-lantern-house: #777872;
   --palette-lantern-stone: #85847e;
@@ -176,8 +176,8 @@
   --alpha-lantern-stroke: rgba(69, 68, 64, .25);
   --alpha-lantern-shadow: rgba(44, 42, 39, .1);
   --alpha-steam: rgba(164, 131, 137, .2);
-  --alpha-water-top: rgba(173, 180, 179, .84);
-  --alpha-water-bottom: rgba(123, 128, 134, .92);
+  --alpha-water-top: rgba(145, 169, 166, .84);
+  --alpha-water-bottom: rgba(82, 105, 113, .94);
   --alpha-basin-shadow: rgba(22, 16, 22, .18);
   --alpha-stone-shadow: rgba(48, 42, 45, .08);
   --alpha-stone-stroke: rgba(82, 88, 88, .2);

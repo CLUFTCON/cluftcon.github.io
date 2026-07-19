@@ -23,10 +23,10 @@ export function AshiyuQuote() {
     if (!root.current) return
     const scene = root.current
     const stage = scene.querySelector<HTMLElement>('.ashiyu-stage')
-    const rim = scene.querySelector<HTMLElement>('.ashiyu-rim')
+    const surface = scene.querySelector<HTMLElement>('.ashiyu-meniscus')
     const basinWall = scene.querySelector<HTMLElement>('.ashiyu-basin-wall')
     const quoteText = scene.querySelector<HTMLElement>('.ashiyu-quote-text:not(.is-wet)')
-    if (!stage || !rim || !basinWall || !quoteText) return
+    if (!stage || !surface || !basinWall || !quoteText) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const userAgent = window.navigator.userAgent
@@ -41,7 +41,7 @@ export function AshiyuQuote() {
     const context = gsap.context(() => {
       const motions = gsap.utils.toArray<HTMLElement>('.ashiyu-quote-motion')
       const quoteStart = () => stage.clientHeight * (window.innerWidth <= 600 ? .14 : .18)
-      const waterline = () => rim.offsetTop + rim.offsetHeight / 2
+      const waterline = () => surface.offsetTop
       const submergedY = () => {
         const quoteHeight = quoteText.getBoundingClientRect().height
         const surfaceClearance = 14
@@ -50,6 +50,13 @@ export function AshiyuQuote() {
         const aboveBasinWall = stage.clientHeight - basinWall.offsetHeight - wallClearance - quoteHeight
 
         return Math.min(belowSurface, aboveBasinWall) - quoteStart()
+      }
+      const surfaceMoment = () => {
+        const quoteHeight = quoteText.getBoundingClientRect().height
+        const travel = submergedY()
+        if (travel <= 0) return .55
+
+        return gsap.utils.clamp(.34, .8, (waterline() - quoteStart() - quoteHeight * .98) / travel)
       }
 
       if (reducedMotion) {
@@ -60,10 +67,12 @@ export function AshiyuQuote() {
 
       if (!usesLightweightWater) {
         causticTimeline = gsap.timeline({ repeat: -1, yoyo: true })
-          .to('.ashiyu-caustic-field', { xPercent: 4, yPercent: 2.5, scale: 1.035, duration: 8, ease: 'sine.inOut' }, 0)
-          .to('.ashiyu-caustic-noise', { attr: { baseFrequency: '.016 .034' }, duration: 8, ease: 'sine.inOut' }, 0)
+          .to('.ashiyu-caustic-layer-one', { xPercent: 4, yPercent: 2.5, duration: 11, ease: 'sine.inOut' }, 0)
+          .to('.ashiyu-caustic-layer-two', { xPercent: -3, yPercent: -1.5, duration: 13, ease: 'sine.inOut' }, 0)
+          .to('.ashiyu-surface-glint', { xPercent: 30, duration: 10, ease: 'sine.inOut' }, 0)
       }
 
+      const crossing = surfaceMoment()
       scrollTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: scene,
@@ -81,11 +90,11 @@ export function AshiyuQuote() {
       scrollTimeline
         .to(motions, { y: submergedY, duration: 1, ease: 'none' }, 0)
         .to('.ashiyu-steam-path', { y: -30, opacity: 0, duration: .58, stagger: .04, ease: 'sine.in' }, .04)
-        .to('.ashiyu-caustics', { opacity: .29, duration: 1, ease: 'none' }, 0)
-        .fromTo('.ripple-one', { attr: { rx: 52 }, opacity: 0 }, { attr: { rx: 285 }, opacity: .5, duration: .3, ease: 'sine.out' }, .38)
-        .to('.ripple-one', { opacity: 0, duration: .2, ease: 'sine.in' }, .62)
-        .fromTo('.ripple-two', { attr: { rx: 34 }, opacity: 0 }, { attr: { rx: 220 }, opacity: .36, duration: .3, ease: 'sine.out' }, .44)
-        .to('.ripple-two', { opacity: 0, duration: .2, ease: 'sine.in' }, .68)
+        .to('.ashiyu-caustics', { opacity: .34, duration: 1, ease: 'none' }, 0)
+        .fromTo('.ashiyu-surface-disturbance', { opacity: 0 }, { opacity: .72, duration: .14, ease: 'sine.out' }, crossing)
+        .to('.ashiyu-surface-disturbance', { opacity: 0, duration: .2, ease: 'sine.in' }, crossing + .14)
+        .fromTo('.ashiyu-bubble', { y: 14, scale: .6, opacity: 0 }, { y: -7, scale: 1, opacity: .46, duration: .13, stagger: .018, ease: 'sine.out' }, crossing + .05)
+        .to('.ashiyu-bubble', { y: -24, opacity: 0, duration: .16, stagger: .014, ease: 'sine.in' }, crossing + .17)
 
       document.fonts?.ready.then(() => {
         if (active) ScrollTrigger.refresh()
@@ -148,19 +157,6 @@ export function AshiyuQuote() {
             <feTurbulence type="fractalNoise" baseFrequency="0.012 0.055" numOctaves="1" seed="8" result="waterNoise" />
             <feDisplacementMap in="SourceGraphic" in2="waterNoise" scale="2.2" xChannelSelector="R" yChannelSelector="G" />
           </filter>
-          <filter id="ashiyu-caustic-light" x="-18%" y="-18%" width="136%" height="136%" colorInterpolationFilters="sRGB">
-            <feTurbulence className="ashiyu-caustic-noise" type="fractalNoise" baseFrequency=".012 .028" numOctaves="2" seed="14" result="causticNoise" />
-            <feSpecularLighting in="causticNoise" surfaceScale="5" specularConstant="1.1" specularExponent="30" lightingColor="var(--palette-caustic-light)" result="causticSpecular">
-              <feDistantLight azimuth="228" elevation="56" />
-            </feSpecularLighting>
-            <feComponentTransfer in="causticSpecular" result="causticHighlights">
-              <feFuncR type="gamma" amplitude="1.1" exponent="2.1" offset="0" />
-              <feFuncG type="gamma" amplitude="1.05" exponent="2.2" offset="0" />
-              <feFuncB type="gamma" amplitude=".92" exponent="2.3" offset="0" />
-              <feFuncA type="gamma" amplitude="1" exponent="2.8" offset="0" />
-            </feComponentTransfer>
-            <feComposite in="causticHighlights" in2="SourceGraphic" operator="in" />
-          </filter>
         </svg>
 
         <svg className="ashiyu-steam" viewBox="0 0 1180 240" preserveAspectRatio="none" aria-hidden>
@@ -175,9 +171,10 @@ export function AshiyuQuote() {
 
         <div className="ashiyu-water" aria-hidden>
           <div className="ashiyu-basin-wall" />
-          <svg className="ashiyu-caustics" viewBox="0 0 1180 900" preserveAspectRatio="none">
-            <rect className="ashiyu-caustic-field" x="-120" y="-100" width="1420" height="1100" rx="80" filter="url(#ashiyu-caustic-light)" />
-          </svg>
+          <div className="ashiyu-caustics">
+            <span className="ashiyu-caustic-layer ashiyu-caustic-layer-one" />
+            <span className="ashiyu-caustic-layer ashiyu-caustic-layer-two" />
+          </div>
           <VisualQuote wet />
         </div>
 
@@ -216,11 +213,18 @@ export function AshiyuQuote() {
           </g>
         </svg>
 
-        <svg className="ashiyu-ripples" viewBox="0 0 1180 100" preserveAspectRatio="none" aria-hidden>
-          <ellipse className="ripple-one" cx="590" cy="50" rx="285" ry="18" />
-          <ellipse className="ripple-two" cx="590" cy="52" rx="220" ry="11" />
-        </svg>
+        <div className="ashiyu-bubbles" aria-hidden>
+          <span className="ashiyu-bubble bubble-one" />
+          <span className="ashiyu-bubble bubble-two" />
+          <span className="ashiyu-bubble bubble-three" />
+          <span className="ashiyu-bubble bubble-four" />
+          <span className="ashiyu-bubble bubble-five" />
+        </div>
 
+        <div className="ashiyu-meniscus" aria-hidden>
+          <span className="ashiyu-surface-glint" />
+          <span className="ashiyu-surface-disturbance" />
+        </div>
         <div className="ashiyu-rim" aria-hidden><span /></div>
       </div>
     </section>
