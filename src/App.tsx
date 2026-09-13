@@ -12,9 +12,26 @@ import { VolunteerFormDrawer } from '@/components/VolunteerFormDrawer'
 gsap.registerPlugin(Flip)
 
 const program = [
-  { index: '01', title: 'Faculty keynotes', copy: 'Two to three invited talks opening new lines of inquiry.', state: 'Speakers forthcoming' },
+  { index: '01', title: 'Faculty keynotes', copy: 'Two to three invited talks opening new lines of inquiry.', state: 'Gerald Penn · Yang Xu' },
   { index: '02', title: 'Presenter lunch', copy: 'A dedicated table for students, faculty, and founding partners.', state: 'Within 12–3 PM' },
   { index: '03', title: 'Poster showcase', copy: 'Undergraduate research in NLP, cognition, formal linguistics, and AI.', state: 'Bahen atrium' },
+] as const
+
+const speakers = [
+  {
+    name: 'Dr. Gerald Penn',
+    image: 'dr_gerald_penn.jpg',
+    role: 'Professor of Computer Science',
+    bio: 'Researching natural language processing, mathematical linguistics, and spoken language processing.',
+    profile: 'https://discover.research.utoronto.ca/12305-gerald-penn',
+  },
+  {
+    name: 'Dr. Yang Xu',
+    image: 'dr_yang_xu.jpg',
+    role: 'Associate Professor of Computer Science',
+    bio: 'Directing the Cognitive Lexicon Laboratory and studying lexical creativity, semantic change, and language and cognition.',
+    profile: 'https://www.uc.utoronto.ca/staff-faculty-profile/yang-xu',
+  },
 ] as const
 
 const sponsorBenefits = [
@@ -354,9 +371,18 @@ export default function App() {
 
         <section className="speakers" id="speakers">
           <div className="section-number">03 <span>THE SPEAKERS</span></div>
-          <SectionHeading eyebrow="Faculty voices · forthcoming" title="Three voices. New questions." copy="Invited faculty will bring distinct perspectives on language, computation, and cognition." light />
+          <SectionHeading eyebrow="Faculty voices" title="Distinct voices. New questions." copy="Meet our speakers exploring language, computation, and cognition. More details to come." light />
           <div className="speaker-grid">
-            {[1, 2, 3].map((speaker) => <article key={speaker}><div className="portrait-placeholder"><span>0{speaker}</span><div className="botanical-mark">✣</div></div><p>SPEAKER_0{speaker}</p><h3>To be announced</h3><span>Faculty keynote · CLUFTCON 2026</span></article>)}
+            {speakers.map((speaker) => (
+              <article key={speaker.name}>
+                <img className="speaker-portrait" src={`${import.meta.env.BASE_URL}images/speakers/${speaker.image}`} alt={speaker.name} loading="lazy" />
+                <p>FACULTY KEYNOTE</p>
+                <h3><a href={speaker.profile} target="_blank" rel="noreferrer">{speaker.name}</a></h3>
+                <span>{speaker.role}<br />University of Toronto</span>
+                <div className="speaker-bio">{speaker.bio}</div>
+              </article>
+            ))}
+            <article><div className="portrait-placeholder"><span>03</span><div className="botanical-mark">✣</div></div><p>SPEAKER_03</p><h3>To be announced</h3><span>Faculty keynote · CLUFTCON 2026</span></article>
           </div>
         </section>
 

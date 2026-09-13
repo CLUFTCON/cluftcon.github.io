@@ -233,6 +233,12 @@ a { color: inherit; text-decoration: none; }
 .speakers .section-number { color: var(--color-accent); }.speakers .section-number span { color: var(--palette-plum-225); }.speakers .section-heading { display: flex; flex-direction: column; align-items: center; text-align: center; }.speaker-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 72px; }
 .speaker-grid article { padding-bottom: 28px; border-bottom: 1px solid var(--palette-plum-425); }.portrait-placeholder { position: relative; height: 330px; display: grid; place-items: center; overflow: hidden; background: linear-gradient(150deg,var(--palette-plum-750),var(--palette-plum-875)); border: 1px solid var(--palette-plum-575); }.portrait-placeholder::after { content: ''; position: absolute; inset: 35% 18% -30%; border-radius: 50% 50% 0 0; background: var(--palette-plum-950); }.portrait-placeholder > span { position: absolute; left: 18px; top: 17px; color: var(--palette-rose-mark); font: 9px 'IBM Plex Mono'; }.botanical-mark { position: relative; z-index: 2; color: var(--alpha-sakura-24); font: 115px 'Newsreader Variable'; }
 .speaker-grid > article > p { margin: 22px 0 9px; color: var(--color-accent); font: 9px 'IBM Plex Mono'; letter-spacing: .12em; }.speaker-grid h3 { margin: 0 0 6px; font: 400 26px 'Newsreader Variable'; }.speaker-grid > article > span { color: var(--palette-plum-190); font-size: 13px; }
+.speaker-portrait { display: block; width: 100%; height: 330px; object-fit: cover; object-position: center 25%; border: 1px solid var(--palette-plum-575); }
+.speaker-grid h3 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.speaker-grid h3 a:hover, .speaker-grid h3 a:focus-visible { color: var(--color-accent); }
+.speaker-bio { margin-top: 16px; color: var(--palette-plum-190); font-size: 14px; line-height: 1.6; }
+@media (max-width: 900px) { .speaker-portrait { height: 250px; } }
+@media (max-width: 600px) { .speaker-portrait { height: 360px; } }
 
 .attend { display: grid; grid-template-columns: .82fr 1.18fr; min-height: 700px; color: var(--palette-white); background: var(--palette-plum-800); }
 .attend-copy { padding: 130px 7vw; display: flex; flex-direction: column; justify-content: center; }.eligibility { margin-top: 50px; padding-top: 18px; border-top: 1px solid var(--palette-plum-525); color: var(--palette-plum-150); font: 10px 'IBM Plex Mono'; letter-spacing: .08em; text-transform: uppercase; }
