@@ -27,29 +27,20 @@ export function AboutSection() {
         <p>
           <span className="font-medium text-foreground">CLUFTCON</span>{' '}
           <span className="text-sm sm:text-base">(/ˈkləft.kɑn/)</span> is the
-          University of Toronto&apos;s first undergraduate research conference,
+          University of Toronto&apos;s student-led computational linguistics event,
           organized by the UofT Computational Linguistics Club (CLCUOFT) and the
           UTM Computational Linguistics Society (UTMCLS).
         </p>
         <p>
-          There exist a plethora of conferences dedicated to computational
-          linguistics (e.g. ACL, COLING, etc.), but there is no venue solely
-          for undergraduates with limited research experience looking to
-          &ldquo;dip their toes into the water.&rdquo; Our clubs&apos; shared
-          mission, and the goal of CLUFTCON, is to foster curiosity, interest,
-          and participation among undergraduate students in computational
-          linguistics.
+          Join fellow students for an afternoon exploring language, computation,
+          and cognition through invited talks and conversation.
         </p>
         <p>
           Participation is limited to undergraduate students across Ontario.
-          Applicants may submit any research, whether done in a dedicated class
-          or extracurricular, pertaining to NLP, cognitive science, formal
-          linguistics, AI, and related fields.
         </p>
         <p>
-          The conference will feature 2–3 keynote speeches from professors, a
-          dedicated lunch for presenters, faculty, and sponsors, and poster
-          presentations in the Bahen atrium for attendee viewing.
+          The event features talks by Prof. Enas AlTarawneh and Aidan Wong,
+          alongside lunch and conversation with fellow attendees.
         </p>
       </div>
 

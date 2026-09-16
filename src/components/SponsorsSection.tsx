@@ -7,16 +7,15 @@ const sponsorEmail = 'complanggroupuoft@gmail.com'
 
 const sponsorBenefits = [
   'Directly invest in the next generation of computational linguists and NLP researchers',
-  "Support undergraduate research at one of the world's leading universities",
+  "Support student engagement at one of the world's leading universities",
   'Connect your brand with hard-working, career-driven students',
-  'Help establish a lasting home for undergraduate research in computational linguistics',
+  'Help establish a lasting home for student engagement in computational linguistics',
 ] as const
 
 const expenses = [
-  'Printing poster boards',
   'Merchandise',
   'Catering',
-  'Honorariums for keynote speakers',
+  'Honorariums for invited speakers',
 ] as const
 
 export function SponsorsSection() {
@@ -32,13 +31,13 @@ export function SponsorsSection() {
           students, we primarily rely on funds from our respective departments
           to finance our events, though such funding is limited. We are looking
           for industry partners who share our vision of providing bright
-          undergraduates a space to showcase their hard work.
+          undergraduates a space to learn and connect with researchers.
         </p>
         <p>
           By joining us in building CLUFTCON, you would be directly investing
           in the next generation of premier computational linguists and NLP
           researchers. As a founding partner, your company helps our clubs
-          establish a forever-home for undergraduate research in computational
+          establish a forever-home for student engagement in computational
           linguistics.
         </p>
       </div>

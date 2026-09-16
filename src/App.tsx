@@ -12,32 +12,26 @@ import { VolunteerFormDrawer } from '@/components/VolunteerFormDrawer'
 gsap.registerPlugin(Flip)
 
 const program = [
-  { index: '01', title: 'Faculty keynotes', copy: 'Two to three invited talks opening new lines of inquiry.', state: 'Gerald Penn · Yang Xu' },
-  { index: '02', title: 'Presenter lunch', copy: 'A dedicated table for students, faculty, and founding partners.', state: 'Within 12–3 PM' },
-  { index: '03', title: 'Poster showcase', copy: 'Undergraduate research in NLP, cognition, formal linguistics, and AI.', state: 'Bahen atrium' },
+  { index: '01', title: 'Invited talks', copy: 'Research on social-bias interpretation and human lexical innovation.', state: 'Enas AlTarawneh · Aidan Wong' },
+  { index: '02', title: 'Lunch & conversation', copy: 'Connect with fellow students and speakers over lunch.', state: 'Within 12–3 PM' },
 ] as const
 
 const speakers = [
   {
-    name: 'Dr. Gerald Penn',
-    image: 'dr_gerald_penn.jpg',
-    role: 'Professor of Computer Science',
-    bio: 'Researching natural language processing, mathematical linguistics, and spoken language processing.',
-    profile: 'https://discover.research.utoronto.ca/12305-gerald-penn',
+    name: 'Prof. Enas AlTarawneh',
+    image: 'dr_enas_alTarawneh.png',
+    paper: 'DiverSense: Graph-Guided Pluralistic Reasoning for Structured Social-Bias Interpretation',
   },
   {
-    name: 'Dr. Yang Xu',
-    image: 'dr_yang_xu.jpg',
-    role: 'Associate Professor of Computer Science',
-    bio: 'Directing the Cognitive Lexicon Laboratory and studying lexical creativity, semantic change, and language and cognition.',
-    profile: 'https://www.uc.utoronto.ca/staff-faculty-profile/yang-xu',
+    name: 'Aidan Wong',
+    image: 'aidan_wang.png',
+    paper: 'Reconstructing novel word combination by children reveals shared principles of human lexical innovation.',
   },
 ] as const
 
 const sponsorBenefits = [
-  ['01', 'Fund the first edition', 'Help establish a lasting Ontario home for undergraduate research.'],
-  ['02', 'Meet emerging researchers', 'Connect with ambitious students at the beginning of their research careers.'],
-  ['03', 'Make the room possible', 'Support poster printing, catering, merchandise, and speaker honorariums.'],
+  ['01', 'Support the next generation', 'Help students discover computational linguistics and connect with researchers.'],
+  ['02', 'Make the room possible', 'Support catering, merchandise, and speaker honorariums.'],
 ] as const
 
 function SectionHeading({ eyebrow, title, copy, light = false }: { eyebrow: string; title: string; copy?: string; light?: boolean }) {
@@ -310,7 +304,7 @@ export default function App() {
           <div className="hero-copy">
             <span className="hero-eyebrow">University of Toronto <i /> Inaugural edition</span>
             <h1>Where language<br /><em>takes root.</em></h1>
-            <p>Ontario’s first undergraduate research conference devoted to computational linguistics.</p>
+            <p>A student-led afternoon of talks and conversation in computational linguistics.</p>
             <div className="hero-actions">
               <button className="button button-primary" onClick={openDrawer}>Join the interest list <ArrowRight /></button>
               <a className="button button-quiet" href="#story">Explore the conference <ArrowDown /></a>
@@ -337,11 +331,11 @@ export default function App() {
         <section className="story paper-section" id="story">
           <div className="section-number">01 <span>THE STORY</span></div>
           <div className="story-grid">
-            <SectionHeading eyebrow="A conference for first research" title="Ideas need somewhere to begin." />
+            <SectionHeading eyebrow="A place for curious minds" title="Ideas need somewhere to begin." />
             <div className="story-copy">
-              <p className="lead"><strong>CLUFTCON</strong> <span>/ˈkləft.kɑn/</span> is a first-of-its-kind undergraduate research conference organized by CLCUOFT and UTMCLS.</p>
-              <p>Major conferences show us where the field is going. CLUFTCON creates room for the earlier moment: the first question, the first experiment, the first poster, and the conversation that makes a student feel they belong in research.</p>
-              <p>Students across Ontario may bring work from a class, a lab, or an independent project spanning NLP, cognitive science, formal linguistics, AI, and adjacent fields.</p>
+              <p className="lead"><strong>CLUFTCON</strong> <span>/ˈkləft.kɑn/</span> is a student-led computational linguistics event organized by CLCUOFT and UTMCLS.</p>
+              <p>CLUFTCON brings students and researchers together to explore how language and computation meet. Come hear new ideas, ask questions, and find a starting point for your own curiosity.</p>
+              <p>Students across Ontario are invited to explore research spanning NLP, cognitive science, linguistics, and AI through talks and conversation.</p>
             </div>
           </div>
           <AshiyuQuote />
@@ -353,17 +347,16 @@ export default function App() {
         </section>
 
         <section className="growth-section">
-          <div className="growth-intro"><span className="mono-kicker">THE SENTENCE, ANNOTATED</span><h2>What grows here</h2><p>One afternoon, three ways to find your place in computational linguistics.</p></div>
+          <div className="growth-intro"><span className="mono-kicker">THE SENTENCE, ANNOTATED</span><h2>What grows here</h2><p>An afternoon to explore ideas and find your community in computational linguistics.</p></div>
           <div className="growth-grid">
-            <article><span className="token">PRESENT <i>NOUN</i></span><h3>Give your work a voice.</h3><p>Translate an experiment, paper, or course project into a poster others can question and build upon.</p><div className="arc" aria-hidden>nsubj</div></article>
-            <article><span className="token">LISTEN <i>VERB</i></span><h3>Follow a new branch.</h3><p>Hear faculty share the questions shaping NLP, language science, and the systems between them.</p><div className="arc" aria-hidden>root</div></article>
-            <article><span className="token">CONNECT <i>VERB</i></span><h3>Meet your next collaborator.</h3><p>Trade ideas over lunch with students, researchers, and organizations investing in the field.</p><div className="arc" aria-hidden>conj</div></article>
+            <article><span className="token">LISTEN <i>VERB</i></span><h3>Follow a new branch.</h3><p>Hear our speakers explore social-bias interpretation and human lexical innovation.</p><div className="arc" aria-hidden>root</div></article>
+            <article><span className="token">CONNECT <i>VERB</i></span><h3>Meet your next collaborator.</h3><p>Trade ideas over lunch with fellow students and speakers.</p><div className="arc" aria-hidden>conj</div></article>
           </div>
         </section>
 
         <section className="program paper-section" id="program">
           <div className="section-number">02 <span>THE PROGRAM</span></div>
-          <SectionHeading eyebrow="24 · 09 · 26 / 12:00–15:00" title="An afternoon in three movements." copy="The full running order is still taking shape. These are the parts already rooted in the program." />
+          <SectionHeading eyebrow="24 · 09 · 26 / 12:00–15:00" title="An afternoon of ideas and conversation." copy="The full running order is still taking shape. These are the parts already rooted in the program." />
           <div className="program-list">
             {program.map((item) => <article key={item.index}><div className="bud"><span>{item.index}</span></div><div><h3>{item.title}</h3><p>{item.copy}</p></div><span className="program-state">{item.state}</span></article>)}
           </div>
@@ -371,34 +364,32 @@ export default function App() {
 
         <section className="speakers" id="speakers">
           <div className="section-number">03 <span>THE SPEAKERS</span></div>
-          <SectionHeading eyebrow="Faculty voices" title="Distinct voices. New questions." copy="Meet our speakers exploring language, computation, and cognition. More details to come." light />
+          <SectionHeading eyebrow="Meet the speakers" title="Distinct voices. New questions." copy="Explore the papers at the heart of this year’s talks." light />
           <div className="speaker-grid">
             {speakers.map((speaker) => (
               <article key={speaker.name}>
                 <img className="speaker-portrait" src={`${import.meta.env.BASE_URL}images/speakers/${speaker.image}`} alt={speaker.name} loading="lazy" />
-                <p>FACULTY KEYNOTE</p>
-                <h3><a href={speaker.profile} target="_blank" rel="noreferrer">{speaker.name}</a></h3>
-                <span>{speaker.role}<br />University of Toronto</span>
-                <div className="speaker-bio">{speaker.bio}</div>
+                <p>INVITED TALK</p>
+                <h3>{speaker.name}</h3>
+                <div className="speaker-paper"><span>PAPER TITLE</span><p>{speaker.paper}</p></div>
               </article>
             ))}
-            <article><div className="portrait-placeholder"><span>03</span><div className="botanical-mark">✣</div></div><p>SPEAKER_03</p><h3>To be announced</h3><span>Faculty keynote · CLUFTCON 2026</span></article>
           </div>
         </section>
 
         <section className="attend" id="attend">
-          <div className="attend-copy"><SectionHeading eyebrow="04 · ATTEND" title="Come curious. Leave connected." copy="Whether you present or simply want to listen, add your name and we’ll send the next announcement." light /><p className="eligibility">Open to undergraduate students across Ontario.</p></div>
+          <div className="attend-copy"><SectionHeading eyebrow="04 · ATTEND" title="Come curious. Leave connected." copy="Join us for the talks and conversation. Add your name and we’ll send the next announcement." light /><p className="eligibility">Open to undergraduate students across Ontario.</p></div>
           <div className="attend-cards">
-            <article className="join-card"><span>INTEREST LIST · OPEN</span><Sprout /><h3>Be first to know.</h3><p>This is not formal registration. Tell us where to reach you when tickets and submissions open.</p><button onClick={openDrawer}>Join the list <ArrowRight /></button></article>
-            <article className="volunteer-card"><span>VOLUNTEERS · OPEN</span><h3>Help the day bloom.</h3><p>Join the team for guest welcome, presenter support, poster setup, photography, and room operations.</p><button onClick={openVolunteerDrawer}>Volunteer with us <ArrowRight /></button></article>
+            <article className="join-card"><span>INTEREST LIST · OPEN</span><Sprout /><h3>Be first to know.</h3><p>This is not formal registration. Tell us where to reach you when registration opens.</p><button onClick={openDrawer}>Join the list <ArrowRight /></button></article>
+            <article className="volunteer-card"><span>VOLUNTEERS · OPEN</span><h3>Help the day bloom.</h3><p>Join the team for guest welcome, speaker support, photography, and room operations.</p><button onClick={openVolunteerDrawer}>Volunteer with us <ArrowRight /></button></article>
           </div>
         </section>
 
         <section className="sponsors paper-section" id="sponsors">
           <div className="section-number">05 <span>FOUNDING PARTNERS</span></div>
-          <div className="sponsor-top"><SectionHeading eyebrow="Help cultivate the first edition" title="Make room for the next generation." /><p>CLUFTCON is an ambitious student-led undertaking. Founding partners directly help us give undergraduate research the audience—and the future—it deserves.</p></div>
+          <div className="sponsor-top"><SectionHeading eyebrow="Help cultivate the first edition" title="Make room for the next generation." /><p>CLUFTCON is a student-led gathering. Founding partners help us bring students and researchers together for an afternoon of learning and connection.</p></div>
           <div className="sponsor-grid">{sponsorBenefits.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
-          <div className="funding-line"><span>YOUR SUPPORT BECOMES</span><div><i>POSTERS</i><i>LUNCH</i><i>MERCH</i><i>HONORARIUMS</i></div></div>
+          <div className="funding-line"><span>YOUR SUPPORT BECOMES</span><div><i>LUNCH</i><i>MERCH</i><i>HONORARIUMS</i></div></div>
           <a className="sponsor-cta" href="mailto:complanggroupuoft@gmail.com"><Mail /> Become a founding partner <span>complanggroupuoft@gmail.com</span></a>
         </section>
       </main>

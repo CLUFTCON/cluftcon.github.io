@@ -43,7 +43,7 @@ export function InterestFormDrawer({ open, onClose }: { open: boolean; onClose: 
         <div className="form-success" role="status" tabIndex={-1}>
           <Check aria-hidden />
           <h3>You’re on the list.</h3>
-          <p>Your response was sent to the CLUFTCON organizers. We’ll be in touch when registration and submissions open.</p>
+          <p>Your response was sent to the CLUFTCON organizers. We’ll be in touch when registration opens.</p>
           <button className="form-submit" type="button" onClick={close}>Done</button>
         </div>
       ) : (

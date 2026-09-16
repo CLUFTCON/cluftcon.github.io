@@ -106,7 +106,7 @@ export function VolunteerFormDrawer({ open, onClose }: { open: boolean; onClose:
         </div>
       ) : (
         <>
-          <p>Join the team welcoming guests, supporting presentations and posters, and keeping the conference running smoothly.</p>
+          <p>Join the team welcoming guests, supporting speakers, and keeping the conference running smoothly.</p>
           <div className="form-progress" aria-label={`Step ${step} of 2`}>
             <span className={step === 1 ? 'is-current' : 'is-complete'}><i>01</i> Contact</span>
             <b aria-hidden />
