@@ -39,7 +39,7 @@ export function AboutSection() {
           Participation is limited to undergraduate students across Ontario.
         </p>
         <p>
-          The event features talks by Prof. Enas AlTarawneh and Aidan Wong,
+          The event features talks by Prof. Enas AlTarawneh and Aidan Wang,
           alongside lunch and conversation with fellow attendees.
         </p>
       </div>

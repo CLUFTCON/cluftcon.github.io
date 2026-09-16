@@ -12,7 +12,7 @@ import { VolunteerFormDrawer } from '@/components/VolunteerFormDrawer'
 gsap.registerPlugin(Flip)
 
 const program = [
-  { index: '01', title: 'Invited talks', copy: 'Research on social-bias interpretation and human lexical innovation.', state: 'Enas AlTarawneh · Aidan Wong' },
+  { index: '01', title: 'Invited talks', copy: 'Research on social-bias interpretation and human lexical innovation.', state: 'Enas AlTarawneh · Aidan Wang' },
   { index: '02', title: 'Lunch & conversation', copy: 'Connect with fellow students and speakers over lunch.', state: 'Within 12–3 PM' },
 ] as const
 
@@ -23,7 +23,7 @@ const speakers = [
     paper: 'DiverSense: Graph-Guided Pluralistic Reasoning for Structured Social-Bias Interpretation',
   },
   {
-    name: 'Aidan Wong',
+    name: 'Aidan Wang',
     image: 'aidan_wang.png',
     paper: 'Reconstructing novel word combination by children reveals shared principles of human lexical innovation.',
   },
