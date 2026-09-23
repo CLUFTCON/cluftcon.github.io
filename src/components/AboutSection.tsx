@@ -6,12 +6,12 @@ const eventDetails = [
   {
     icon: Clock,
     label: 'When',
-    value: 'September 24, 2026 · 12–3 PM EST',
+    value: 'October 8, 2026 · 12–3 PM ET',
   },
   {
     icon: MapPin,
     label: 'Where',
-    value: 'Bahen Centre atrium, University of Toronto St. George',
+    value: 'Location TBD, University of Toronto St. George campus',
   },
   {
     icon: Users,
@@ -39,7 +39,7 @@ export function AboutSection() {
           Participation is limited to undergraduate students across Ontario.
         </p>
         <p>
-          The event features talks by Prof. Enas AlTarawneh and Aidan Wang,
+          The event features talks by Dr. Gerald Penn, Prof. Enas AlTarawneh, and Aidan Wang,
           alongside lunch and conversation with fellow attendees.
         </p>
       </div>

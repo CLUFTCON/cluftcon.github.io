@@ -12,11 +12,16 @@ import { VolunteerFormDrawer } from '@/components/VolunteerFormDrawer'
 gsap.registerPlugin(Flip)
 
 const program = [
-  { index: '01', title: 'Invited talks', copy: 'Research on social-bias interpretation and human lexical innovation.', state: 'Enas AlTarawneh · Aidan Wang' },
+  { index: '01', title: 'Invited talks', copy: 'Research on social-bias interpretation and human lexical innovation.', state: 'Enas AlTarawneh · Aidan Wang · Gerald Penn' },
   { index: '02', title: 'Lunch & conversation', copy: 'Connect with fellow students and speakers over lunch.', state: 'Within 12–3 PM' },
 ] as const
 
 const speakers = [
+  {
+    name: 'Dr. Gerald Penn',
+    image: 'dr_gerald_penn.jpg',
+    paper: null,
+  },
   {
     name: 'Prof. Enas AlTarawneh',
     image: 'dr_enas_alTarawneh.png',
@@ -310,8 +315,8 @@ export default function App() {
               <a className="button button-quiet" href="#story">Explore the conference <ArrowDown /></a>
             </div>
             <dl className="hero-colophon">
-              <div><dt>Date</dt><dd>24 September 2026<br />12–3 PM EST</dd></div>
-              <div><dt>Place</dt><dd>Bahen Centre atrium<br />U of T, St. George</dd></div>
+              <div><dt>Date</dt><dd>Postponed to 8 October 2026<br />12–3 PM ET</dd></div>
+              <div><dt>Place</dt><dd>Location TBD<br />U of T, St. George campus</dd></div>
             </dl>
           </div>
           {isMobile ? (
@@ -340,8 +345,8 @@ export default function App() {
           </div>
           <AshiyuQuote />
           <div className="facts-rail">
-            <article><CalendarDays /><span>WHEN</span><strong>September 24</strong><p>2026 · 12–3 PM EST</p></article>
-            <article><MapPin /><span>WHERE</span><strong>Bahen Centre</strong><p>University of Toronto</p></article>
+            <article><CalendarDays /><span>WHEN</span><strong>October 8</strong><p>2026 · 12–3 PM ET</p></article>
+            <article><MapPin /><span>WHERE</span><strong>Location TBD</strong><p>U of T, St. George campus</p></article>
             <article><Users /><span>WHO</span><strong>Undergraduates</strong><p>From across Ontario</p></article>
           </div>
         </section>
@@ -356,7 +361,7 @@ export default function App() {
 
         <section className="program paper-section" id="program">
           <div className="section-number">02 <span>THE PROGRAM</span></div>
-          <SectionHeading eyebrow="24 · 09 · 26 / 12:00–15:00" title="An afternoon of ideas and conversation." copy="The full running order is still taking shape. These are the parts already rooted in the program." />
+          <SectionHeading eyebrow="08 · 10 · 26 / 12:00–15:00" title="An afternoon of ideas and conversation." copy="The full running order is still taking shape. These are the parts already rooted in the program." />
           <div className="program-list">
             {program.map((item) => <article key={item.index}><div className="bud"><span>{item.index}</span></div><div><h3>{item.title}</h3><p>{item.copy}</p></div><span className="program-state">{item.state}</span></article>)}
           </div>
@@ -371,7 +376,7 @@ export default function App() {
                 <img className="speaker-portrait" src={`${import.meta.env.BASE_URL}images/speakers/${speaker.image}`} alt={speaker.name} loading="lazy" />
                 <p>INVITED TALK</p>
                 <h3>{speaker.name}</h3>
-                <div className="speaker-paper"><span>PAPER TITLE</span><p>{speaker.paper}</p></div>
+                <div className="speaker-paper"><span>{speaker.paper ? 'PAPER TITLE' : 'TALK DETAILS'}</span><p>{speaker.paper ?? 'To be announced'}</p></div>
               </article>
             ))}
           </div>
@@ -394,7 +399,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer><div><strong>CLUFTCON</strong><span>/ˈkləft.kɑn/</span></div><p>University of Toronto · September 24, 2026<br />Organized by CLCUOFT and UTMCLS</p><nav><a href="#story">Story</a><a href="#program">Program</a><a href="#attend">Attend</a><a href="#sponsors">Sponsors</a></nav><code>[ROOT → CLUFTCON_2026]</code></footer>
+      <footer><div><strong>CLUFTCON</strong><span>/ˈkləft.kɑn/</span></div><p>University of Toronto · October 8, 2026<br />Organized by CLCUOFT and UTMCLS</p><nav><a href="#story">Story</a><a href="#program">Program</a><a href="#attend">Attend</a><a href="#sponsors">Sponsors</a></nav><code>[ROOT → CLUFTCON_2026]</code></footer>
       <InterestFormDrawer open={drawerOpen} onClose={closeDrawer} />
       <VolunteerFormDrawer open={volunteerDrawerOpen} onClose={closeVolunteerDrawer} />
     </div>
