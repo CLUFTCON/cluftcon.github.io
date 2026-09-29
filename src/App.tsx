@@ -12,15 +12,15 @@ import { VolunteerFormDrawer } from '@/components/VolunteerFormDrawer'
 gsap.registerPlugin(Flip)
 
 const program = [
-  { index: '01', title: 'Invited talks', copy: 'Research on social-bias interpretation and human lexical innovation.', state: 'Enas AlTarawneh · Aidan Wang · Gerald Penn' },
-  { index: '02', title: 'Lunch & conversation', copy: 'Connect with fellow students and speakers over lunch.', state: 'Within 12–3 PM' },
+  { index: '01', title: 'Invited talks', copy: 'Research on language models, social-bias interpretation, and human lexical innovation.', state: 'Enas AlTarawneh · Aidan Wang · Gerald Penn' },
+  { index: '02', title: 'Lunch & conversation', copy: 'Connect with fellow students and speakers over lunch.', state: 'Within 12–2 PM' },
 ] as const
 
 const speakers = [
   {
     name: 'Dr. Gerald Penn',
     image: 'dr_gerald_penn.jpg',
-    paper: null,
+    paper: 'Do Language Models Know Language?',
   },
   {
     name: 'Prof. Enas AlTarawneh',
@@ -315,8 +315,8 @@ export default function App() {
               <a className="button button-quiet" href="#story">Explore the conference <ArrowDown /></a>
             </div>
             <dl className="hero-colophon">
-              <div><dt>Date</dt><dd>Postponed to 8 October 2026<br />12–3 PM ET</dd></div>
-              <div><dt>Place</dt><dd>Location TBD<br />U of T, St. George campus</dd></div>
+              <div><dt>Date</dt><dd>Postponed to 8 October 2026<br />12–2 PM ET</dd></div>
+              <div><dt>Place</dt><dd>GB 303<br />U of T, St. George campus</dd></div>
             </dl>
           </div>
           {isMobile ? (
@@ -345,8 +345,8 @@ export default function App() {
           </div>
           <AshiyuQuote />
           <div className="facts-rail">
-            <article><CalendarDays /><span>WHEN</span><strong>October 8</strong><p>2026 · 12–3 PM ET</p></article>
-            <article><MapPin /><span>WHERE</span><strong>Location TBD</strong><p>U of T, St. George campus</p></article>
+            <article><CalendarDays /><span>WHEN</span><strong>October 8</strong><p>2026 · 12–2 PM ET</p></article>
+            <article><MapPin /><span>WHERE</span><strong>GB 303</strong><p>U of T, St. George campus</p></article>
             <article><Users /><span>WHO</span><strong>Undergraduates</strong><p>From across Ontario</p></article>
           </div>
         </section>
@@ -354,14 +354,14 @@ export default function App() {
         <section className="growth-section">
           <div className="growth-intro"><span className="mono-kicker">THE SENTENCE, ANNOTATED</span><h2>What grows here</h2><p>An afternoon to explore ideas and find your community in computational linguistics.</p></div>
           <div className="growth-grid">
-            <article><span className="token">LISTEN <i>VERB</i></span><h3>Follow a new branch.</h3><p>Hear our speakers explore social-bias interpretation and human lexical innovation.</p><div className="arc" aria-hidden>root</div></article>
+            <article><span className="token">LISTEN <i>VERB</i></span><h3>Follow a new branch.</h3><p>Hear our speakers explore language models, social-bias interpretation, and human lexical innovation.</p><div className="arc" aria-hidden>root</div></article>
             <article><span className="token">CONNECT <i>VERB</i></span><h3>Meet your next collaborator.</h3><p>Trade ideas over lunch with fellow students and speakers.</p><div className="arc" aria-hidden>conj</div></article>
           </div>
         </section>
 
         <section className="program paper-section" id="program">
           <div className="section-number">02 <span>THE PROGRAM</span></div>
-          <SectionHeading eyebrow="08 · 10 · 26 / 12:00–15:00" title="An afternoon of ideas and conversation." copy="The full running order is still taking shape. These are the parts already rooted in the program." />
+          <SectionHeading eyebrow="08 · 10 · 26 / 12:00–14:00" title="An afternoon of ideas and conversation." copy="The full running order is still taking shape. These are the parts already rooted in the program." />
           <div className="program-list">
             {program.map((item) => <article key={item.index}><div className="bud"><span>{item.index}</span></div><div><h3>{item.title}</h3><p>{item.copy}</p></div><span className="program-state">{item.state}</span></article>)}
           </div>
@@ -376,7 +376,7 @@ export default function App() {
                 <img className="speaker-portrait" src={`${import.meta.env.BASE_URL}images/speakers/${speaker.image}`} alt={speaker.name} loading="lazy" />
                 <p>INVITED TALK</p>
                 <h3>{speaker.name}</h3>
-                <div className="speaker-paper"><span>{speaker.paper ? 'PAPER TITLE' : 'TALK DETAILS'}</span><p>{speaker.paper ?? 'To be announced'}</p></div>
+                <div className="speaker-paper"><span>TALK TITLE</span><p>{speaker.paper}</p></div>
               </article>
             ))}
           </div>

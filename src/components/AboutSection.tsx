@@ -6,12 +6,12 @@ const eventDetails = [
   {
     icon: Clock,
     label: 'When',
-    value: 'October 8, 2026 · 12–3 PM ET',
+    value: 'October 8, 2026 · 12–2 PM ET',
   },
   {
     icon: MapPin,
     label: 'Where',
-    value: 'Location TBD, University of Toronto St. George campus',
+    value: 'GB 303, University of Toronto St. George campus',
   },
   {
     icon: Users,

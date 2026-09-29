@@ -6,7 +6,12 @@ import { submitGoogleForm } from '@/lib/googleForms'
 
 const formId = '1FAIpQLSd9G0YPlc7mt_BEJs5_0IXaaFGbqA5l_FmCYlqtce-qxiIecA'
 const formUrl = `https://docs.google.com/forms/d/e/${formId}/viewform?usp=header`
-const availabilityOptions = ['9am-12pm (Preparation)', '12pm-3pm (Event)', '3pm-5pm (Cleanup)'] as const
+// Keep submitted values aligned with the existing Google Form choices.
+const availabilityOptions = [
+  { value: '9am-12pm (Preparation)', label: '9am-12pm (Preparation)' },
+  { value: '12pm-3pm (Event)', label: '12pm-2pm (Event)' },
+  { value: '3pm-5pm (Cleanup)', label: '3pm-5pm (Cleanup)' },
+] as const
 const shirtSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] as const
 
 type VolunteerData = {
@@ -140,7 +145,7 @@ export function VolunteerFormDrawer({ open, onClose }: { open: boolean; onClose:
                   <span>What times are you available? <i>Required</i></span>
                   <div className="form-choices" role="group" aria-describedby={errors.availability ? 'volunteer-availability-error' : undefined}>
                     {availabilityOptions.map((option, index) => (
-                      <label key={option}><input type="checkbox" checked={data.availability.includes(option)} onChange={() => toggleAvailability(option)} aria-invalid={Boolean(errors.availability) && index === 0} /><span>{option}</span></label>
+                      <label key={option.value}><input type="checkbox" checked={data.availability.includes(option.value)} onChange={() => toggleAvailability(option.value)} aria-invalid={Boolean(errors.availability) && index === 0} /><span>{option.label}</span></label>
                     ))}
                   </div>
                   {errors.availability && <small className="field-error" id="volunteer-availability-error">{errors.availability}</small>}
