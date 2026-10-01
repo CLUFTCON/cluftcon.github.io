@@ -11,28 +11,36 @@ import { VolunteerFormDrawer } from '@/components/VolunteerFormDrawer'
 
 gsap.registerPlugin(Flip)
 
-const program = [
-  { index: '01', title: 'Invited talks', copy: 'Research on language models, social-bias interpretation, and human lexical innovation.', state: 'Enas AlTarawneh · Aidan Wang · Gerald Penn' },
-  { index: '02', title: 'Lunch & conversation', copy: 'Connect with fellow students and speakers over lunch.', state: 'Within 12–2 PM' },
-] as const
-
 const speakers = [
   {
-    name: 'Dr. Gerald Penn',
-    image: 'dr_gerald_penn.jpg',
-    paper: 'Do Language Models Know Language?',
+    name: 'Aidan Wang',
+    image: 'aidan_wang.png',
+    paper: 'Reconstructing novel word combination by children reveals shared principles of human lexical innovation.',
+    time: '12:00–12:30 PM',
   },
   {
     name: 'Prof. Enas AlTarawneh',
     image: 'dr_enas_alTarawneh.png',
     paper: 'DiverSense: Graph-Guided Pluralistic Reasoning for Structured Social-Bias Interpretation',
+    time: '12:30–1:00 PM',
   },
   {
-    name: 'Aidan Wang',
-    image: 'aidan_wang.png',
-    paper: 'Reconstructing novel word combination by children reveals shared principles of human lexical innovation.',
+    name: 'Dr. Gerald Penn',
+    image: 'dr_gerald_penn.jpg',
+    paper: 'Do Language Models Know Language?',
+    time: '1:00–1:30 PM',
   },
 ] as const
+
+const program = [
+  ...speakers.map((speaker, index) => ({
+    index: String(index + 1).padStart(2, '0'),
+    title: speaker.name,
+    copy: speaker.paper,
+    state: speaker.time,
+  })),
+  { index: '04', title: 'Lunch & conversation', copy: 'Connect with fellow students and speakers over lunch.', state: 'Within 12–2 PM' },
+]
 
 const sponsorBenefits = [
   ['01', 'Support the next generation', 'Help students discover computational linguistics and connect with researchers.'],
@@ -361,7 +369,7 @@ export default function App() {
 
         <section className="program paper-section" id="program">
           <div className="section-number">02 <span>THE PROGRAM</span></div>
-          <SectionHeading eyebrow="08 · 10 · 26 / 12:00–14:00" title="An afternoon of ideas and conversation." copy="The full running order is still taking shape. These are the parts already rooted in the program." />
+          <SectionHeading eyebrow="08 · 10 · 26 / 12:00–14:00" title="An afternoon of ideas and conversation." copy="Talks begin at noon, with 30 minutes for each speaker. All times are Eastern." />
           <div className="program-list">
             {program.map((item) => <article key={item.index}><div className="bud"><span>{item.index}</span></div><div><h3>{item.title}</h3><p>{item.copy}</p></div><span className="program-state">{item.state}</span></article>)}
           </div>
@@ -374,7 +382,7 @@ export default function App() {
             {speakers.map((speaker) => (
               <article key={speaker.name}>
                 <img className="speaker-portrait" src={`${import.meta.env.BASE_URL}images/speakers/${speaker.image}`} alt={speaker.name} loading="lazy" />
-                <p>INVITED TALK</p>
+                <p>INVITED TALK · {speaker.time} ET</p>
                 <h3>{speaker.name}</h3>
                 <div className="speaker-paper"><span>TALK TITLE</span><p>{speaker.paper}</p></div>
               </article>
